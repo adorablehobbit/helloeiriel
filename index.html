@@ -3,140 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola! Faith</title>
-    <script src="https://kit.fontawesome.com/2bd7bb3d9c.js" crossorigin="anonymous"></script>   <!-- important to add the link -->
-    <link rel="stylesheet" href="askfaith.css">
+    <title>Open me</title>
+    <link rel="icon" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="short-scripture" class="short-scripture-hide">
-        <h4>The Parables of the Hidden Treasure and the Pearl</h4>
-        <p>44 “The kingdom of heaven is like treasure hidden in a field. When a man found it, he hid it again, and then in his joy went and sold all he had and bought that field.</p>
-        <p>45 “Again, the kingdom of heaven is like a merchant looking for fine pearls. 46 When he found one of great value, he went away and sold everything he had and bought it.</p>
+
+    <!-- Details segment shown at the end -->
+    <div id="detailsSegment">
+        <div class="details-card">
+            <div id="event-info">
+                <p class="event-title">INTERCONTINENTAL ENCO DATE</p>
+                <div class="event-rows">
+                    <div class="event-row">
+                        <span class="event-key">where</span>
+                        <span class="event-val">SM Megamall</span>
+                    </div>
+                    <div class="event-row">
+                        <span class="event-key">when</span>
+                        <span class="event-val">June 20, 2026 &nbsp;|&nbsp; 5PM – 8PM</span>
+                    </div>
+                    <div class="event-row">
+                        <span class="event-key">call time</span>
+                        <span class="event-val">4:30 – 5PM</span>
+                    </div>
+                </div>
+            </div>
+            <div>See you!!</div>
+            <button id="restart-btn" onclick="restartGame()">↩ restart</button>
+        </div>
     </div>
 
-    <div id="detailsSegment" style="margin-top: 220px; display: none;">
-        <img src="qc-details.jpg" width="350px" max-height="250px" alt="details for enco-date">
+    <!-- Game wrapper — everything inside is vertically centered -->
+    <div id="game-wrapper">
+
+    <!-- Scripture — lives inside the flow so it pushes content down -->
+    <div id="short-scripture" role="dialog" aria-label="Scripture">
+        <button id="scripture-close" aria-label="Dismiss scripture">✕</button>
+        <h4>Matthew 13:44–46</h4>
+        <p><strong>44</strong> "The kingdom of heaven is like treasure hidden in a field. When a man found it, he hid it again, and then in his joy went and sold all he had and bought that field.</p>
+        <p><strong>45</strong> "Again, the kingdom of heaven is like a merchant looking for fine pearls. <strong>46</strong> When he found one of great value, he went away and sold everything he had and bought it.</p>
     </div>
 
-    <span id="container">
-        <span id="word">start</span>
-    </span>
-    <div id="ask-segment">
+    <!-- Word display -->
+    <div id="word-container">
+        <div id="word-display" aria-live="polite">
+            <span id="typed-text"></span><span id="cursor-char"></span><span id="remaining-text"></span>
+        </div>
+        <div id="error-hint" aria-live="assertive"></div>
+    </div>
+
+    <!-- Ask segment (YES / no) -->
+    <div id="ask-segment" role="dialog" aria-label="Invitation">
+        <!-- Event info shown here too -->
+        <div id="ask-event-info">
+            <p class="event-title">INTERCONTINENTAL ENCO DATE</p>
+            <div class="event-rows">
+                <div class="event-row">
+                    <span class="event-key">where</span>
+                    <span class="event-val">SM Megamall</span>
+                </div>
+                <div class="event-row">
+                    <span class="event-key">when</span>
+                    <span class="event-val">June 20, 2026 &nbsp;|&nbsp; 5PM – 8PM</span>
+                </div>
+                <div class="event-row">
+                    <span class="event-key">call time</span>
+                    <span class="event-val">4:30 – 5PM</span>
+                </div>
+            </div>
+        </div>
         <h1>Will you go to an encouragement date with me?</h1>
-        <div>
-            <button onclick="yesButton()">YES</button>
-            <button>no</button>
+        <div class="ask-buttons">
+            <button id="yes-btn" onclick="yesButton()">YES 🌿</button>
+            <button id="no-btn">no</button>
         </div>
     </div>
-    <div id="sideMenu">
-        <span id="practice">
-            <a href="">
-                <i class="fa-solid fa-keyboard" style="color: #9f9999;"></i> Practice
-            </a>
-        </span>
-        <span id="profile">
-            <a href="">
-                <i class="fa-solid fa-chart-area" style="color: #9f9999;"></i> Profile
-            </a>
-        </span>
-        <span id="help">
-            <a href="">
-                <i class="fa-regular fa-circle-question" style="color: #9f9999;"></i> Help
-            </a>
-        </span>
-        <span id="highScores">
-            <a href="">
-                <i class="fa-solid fa-trophy" style="color: #9f9999;"></i> High Scores
-            </a>
-        </span>
-        <span id="multiplayer">
-            <a href="">
-                <i class="fa-solid fa-gamepad" style="color: #9f9999;"></i> Multiplayer
-            </a>
-        </span>
-        <span id="typingTest">
-            <a href="">
-                <i class="fa-solid fa-gauge-simple-high" style="color: #9f9999;"></i> Typing Test
-            </a>
-        </span>
-        <span id="layouts">
-            <a href="">
-                <i class="fa-solid fa-bars" style="color: #9f9999;"></i> Layouts
-            </a>
-        </span>
+
+    <!-- Keyboard UI -->
+    <div id="keyboardContainer" aria-label="On-screen keyboard">
+        <div class="row" id="row-one">
+            <div class="key" data-key="`" id="~Key">~</div>
+            <div class="key" data-key="1" id="1Key">1</div>
+            <div class="key" data-key="2" id="2Key">2</div>
+            <div class="key" data-key="3" id="3Key">3</div>
+            <div class="key" data-key="4" id="4Key">4</div>
+            <div class="key" data-key="5" id="5Key">5</div>
+            <div class="key" data-key="6" id="6Key">6</div>
+            <div class="key" data-key="7" id="7Key">7</div>
+            <div class="key" data-key="8" id="8Key">8</div>
+            <div class="key" data-key="9" id="9Key">9</div>
+            <div class="key" data-key="0" id="0Key">0</div>
+            <div class="key" data-key="-" id="-Key">-</div>
+            <div class="key" data-key="=" id="=Key">=</div>
+            <div class="key wide" data-key="Backspace" id="BackspaceKey">⌫</div>
+        </div>
+        <div class="row" id="row-two">
+            <div class="key medium" data-key="Tab" id="TabKey">Tab</div>
+            <div class="key" data-key="q" id="qKey">Q</div>
+            <div class="key" data-key="w" id="wKey">W</div>
+            <div class="key" data-key="e" id="eKey">E</div>
+            <div class="key" data-key="r" id="rKey">R</div>
+            <div class="key" data-key="t" id="tKey">T</div>
+            <div class="key" data-key="y" id="yKey">Y</div>
+            <div class="key" data-key="u" id="uKey">U</div>
+            <div class="key" data-key="i" id="iKey">I</div>
+            <div class="key" data-key="o" id="oKey">O</div>
+            <div class="key" data-key="p" id="pKey">P</div>
+            <div class="key" data-key="[" id="[Key">[</div>
+            <div class="key" data-key="]" id="]Key">]</div>
+            <div class="key medium" data-key="\\" id="forwardSlashKey">\ |</div>
+        </div>
+        <div class="row" id="row-three">
+            <div class="key caps" data-key="CapsLock" id="CapslockKey">Caps</div>
+            <div class="key" data-key="a" id="aKey">A</div>
+            <div class="key" data-key="s" id="sKey">S</div>
+            <div class="key" data-key="d" id="dKey">D</div>
+            <div class="key" data-key="f" id="fKey">F</div>
+            <div class="key" data-key="g" id="gKey">G</div>
+            <div class="key" data-key="h" id="hKey">H</div>
+            <div class="key" data-key="j" id="jKey">J</div>
+            <div class="key" data-key="k" id="kKey">K</div>
+            <div class="key" data-key="l" id="lKey">L</div>
+            <div class="key" data-key=";" id=";Key">;</div>
+            <div class="key" data-key="'" id="'Key">'</div>
+            <div class="key enter" data-key="Enter" id="EnterKey">Enter</div>
+        </div>
+        <div class="row" id="row-four">
+            <div class="key shift" data-key="Shift" id="shift1Key">Shift</div>
+            <div class="key" data-key="z" id="zKey">Z</div>
+            <div class="key" data-key="x" id="xKey">X</div>
+            <div class="key" data-key="c" id="cKey">C</div>
+            <div class="key" data-key="v" id="vKey">V</div>
+            <div class="key" data-key="b" id="bKey">B</div>
+            <div class="key" data-key="n" id="nKey">N</div>
+            <div class="key" data-key="m" id="mKey">M</div>
+            <div class="key" data-key="," id=",Key">,</div>
+            <div class="key" data-key="." id="periodKey">.</div>
+            <div class="key" data-key="/" id="/Key">/</div>
+            <div class="key shift" data-key="Shift" id="shift2Key">Shift</div>
+        </div>
+        <div class="row" id="row-five">
+            <div class="key ctrl" data-key="Control" id="ctrl1Key">Ctrl</div>
+            <div class="key alt" data-key="Alt" id="alt1Key">Alt</div>
+            <div class="key spacebar" data-key=" " id="spaceKey">Space</div>
+            <div class="key alt" data-key="Alt" id="alt2Key">Alt</div>
+            <div class="key ctrl" data-key="Control" id="ctrl2Key">Ctrl</div>
+        </div>
+        <div id="glowing-circle" aria-hidden="true"></div>
     </div>
-    <div id="keyboardContainer">
-        <div class="row1" id="row-one">
-            <div id="~Key">~</div>
-            <div id="1Key">1 !</div>
-            <div id="2Key">2 @</div>
-            <div id="3Key">3 #</div>
-            <div id="4Key">4 $</div>
-            <div id="5Key">5 %</div>
-            <div id="6Key">6 ^</div>
-            <div id="7Key">7 &</div>
-            <div id="8Key">8 *</div>
-            <div id="9Key">9 (</div>
-            <div id="0Key">0 )</div>
-            <div id="-Key">- _</div>
-            <div id="=Key">= +</div>
-            <div id="BackspaceKey" id="BackspaceKey">Backspace</div>
-        </div>
-        <div class="row2" id="row-two">
-            <div id="TabKey">Tab</div>
-            <div id="qKey">Q</div>
-            <div id="wKey">W</div>
-            <div id="eKey">E</div>
-            <div id="rKey">R</div>
-            <div id="tKey">T</div>
-            <div id="yKey">Y</div>
-            <div id="uKey">U</div>
-            <div id="iKey">I</div>
-            <div id="oKey">O</div>
-            <div id="pKey">P</div>
-            <div id="[Key">[ {</div>
-            <div id="}Key">} ]</div>
-            <div id="forwardSlashKey">\ |</div>
-        </div>
-        <div class="row3" id="row-three">
-            <div id="CapslockKey">Capslock</div>
-            <div id="aKey">A</div>
-            <div id="sKey">S</div>
-            <div id="dKey">D</div>
-            <div id="fKey">F</div>
-            <div id="gKey">G</div>
-            <div id="hKey">H</div>
-            <div id="jKey">J</div>
-            <div id="kKey">K</div>
-            <div id="lKey">L</div>
-            <div id=";Key">; :</div>
-            <div id="'Key">' "</div>
-            <div id="EnterKey">Enter</div>
-        </div>
-        <div class="row4" id="row-four">
-            <div id="shift1Key">Shift</div>
-            <div id="zKey">Z</div>
-            <div id="xKey">X</div>
-            <div id="cKey">C</div>
-            <div id="vKey">V</div>
-            <div id="bKey">B</div>
-            <div id="nKey">N</div>
-            <div id="mKey">M</div>
-            <div id=",Key">, <</div>
-            <div id="periodKey">. ></div>
-            <div id="/Key">/ ?</div>
-            <div id="shift2Key">Shift</div>
-        </div>
-        <div class="row5" id="row-five">
-            <div id="ctr1Key">Ctrl</div>
-            <div id="alt1Key">Alt</div>
-            <div id="spaceKey">Space</div>
-            <div id="alt2Key">Alt</div>
-            <div id="ctrl2Key">Ctrl</div>
-        </div>
-        <div id="glowing-circle"></div>
+
+    <!-- Controls row -->
+    <div id="controls-row">
+        <button id="skip-button">SKIP ➤</button>
     </div>
-    <p id="skip-button" class="button-class">SKIP ➤</p>
+
+    </div><!-- end #game-wrapper -->
+
+    <script src="script.js"></script>
 </body>
-<script src="askfaith.js"></script>
 </html>
