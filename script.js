@@ -13,15 +13,15 @@ const MESSAGES = [
     "Some could be okay:) but finding /greater/ comfort outside will lead us astray.",
     "Away from the Shepherd's protection, away from God:(",
     "I like this scripture, because it is a clear message of what's worth it /above everything else/.",
-    "It's much worth it to leave /every/ earthly desire or possession we have or could have...",
-    "I also learned that this scripture is teaches us to be closer to God.",
+    "Amazing how the story shows how much worth it was for them to leave /every/ earthly desire or possession they have or could have...",
+    "I also learned that this scripture teaches us to be closer to God.",
     "And what other enjoyable way to be closer to God than with the good influence of a friend !",
     "Good stories, lessons, and perspectives that God teaches us individually hehe :>",
     "With this in mind, I would like to ask...",
     // pause here for YES/NO
     "YAYYY NICEE!! HAHAHA I hope you were encouraged with the scripture :D",
     "At sa pagtype... (or skip) HAHAHA",
-    "I'm looking forward in spending time and helping us get closer to God!",
+    "I'm looking forward to spending time and helping us get closer to God!",
     "Keep safe and well!"
 ];
 
