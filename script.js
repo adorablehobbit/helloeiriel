@@ -19,7 +19,7 @@ const MESSAGES = [
     "Good stories, lessons, and perspectives that God teaches us individually hehe :>",
     "With this in mind, I would like to ask...",
     // pause here for YES/NO
-    "Yun lang!! HAHAHA I hope you were encouraged with the scripture :D",
+    "YAYYY NICEE!! HAHAHA I hope you were encouraged with the scripture :D",
     "At sa pagtype... (or skip) HAHAHA",
     "I'm looking forward in spending time and helping us get closer to God!",
     "Keep safe and well!"
